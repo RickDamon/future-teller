@@ -1,0 +1,11 @@
+{
+	"ios": {
+		"name": "QAPMTest"
+	},
+	"android": {
+		"name": "QAPMTest"
+	},
+	"common": {
+		"name": "QAPMTest"
+	}
+}
