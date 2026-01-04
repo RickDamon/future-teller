@@ -1,4 +1,128 @@
-<!--pages/chatBot/chatBot.wxml-->
-<view>
-  <agent-ui agentConfig="{{agentConfig}}"></agent-ui>
+<view class="page" wx:if="{{cultivator}}">
+  <view class="profile card">
+    <view class="profile-header">
+      <view>
+        <view class="name">{{cultivator.name}}</view>
+        <view class="realm-line">{{currentRealm.name}} · {{currentRealm.motto}}</view>
+      </view>
+      <view class="root">{{cultivator.rootType}}</view>
+    </view>
+
+    <view class="rank-row">
+      <view class="rank-chip">{{cultivator.sectRank}}</view>
+      <view class="fame-pill">威望 {{cultivator.fame || 0}}</view>
+    </view>
+
+    <view class="progress-wrapper">
+      <text>修为进度</text>
+      <text>{{cultivator.progress}}/100</text>
+    </view>
+    <progress percent="{{cultivator.progress > 100 ? 100 : cultivator.progress}}" stroke-width="6" activeColor="#7f6df2" backgroundColor="#1c2131" border-radius="8" />
+
+    <view class="vital-panels">
+      <view class="vital-block">
+        <view class="vital-header">
+          <text>气血</text>
+          <text>{{cultivator.stats.currentHp}} / {{cultivator.stats.maxHp}}</text>
+        </view>
+        <view class="vital-bar">
+          <view class="vital-fill hp" style="width: {{cultivator.stats.hpPercent || 0}}%;"></view>
+        </view>
+      </view>
+      <view class="vital-block">
+        <view class="vital-header">
+          <text>灵力</text>
+          <text>{{cultivator.stats.currentMana}} / {{cultivator.stats.maxMana}}</text>
+        </view>
+        <view class="vital-bar">
+          <view class="vital-fill mana" style="width: {{cultivator.stats.manaPercent || 0}}%;"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="combat-stats">
+      <view class="combat-item">
+        <text class="label">攻击</text>
+        <text class="value">{{cultivator.stats.attack}}</text>
+      </view>
+      <view class="combat-item">
+        <text class="label">防御</text>
+        <text class="value">{{cultivator.stats.defense}}</text>
+      </view>
+      <view class="combat-item">
+        <text class="label">身法</text>
+        <text class="value">{{cultivator.stats.speed}}</text>
+      </view>
+    </view>
+
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="label">实龄</text>
+        <text class="value">{{cultivator.age}} 岁</text>
+      </view>
+      <view class="stat-item">
+        <text class="label">寿元</text>
+        <text class="value">{{lifespanRemaining}} / {{lifespanCeiling}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="label">下个境界</text>
+        <text class="value">{{nextRealm ? nextRealm.name : '飞升'}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="label">神识</text>
+        <text class="value">{{cultivator.attributes.sense}}</text>
+      </view>
+    </view>
+
+    <view class="attributes">
+      <view class="attr">
+        <text>悟性</text>
+        <text>{{cultivator.attributes.comprehension}}</text>
+      </view>
+      <view class="attr">
+        <text>体魄</text>
+        <text>{{cultivator.attributes.physique}}</text>
+      </view>
+      <view class="attr">
+        <text>气运</text>
+        <text>{{cultivator.attributes.luck}}</text>
+      </view>
+      <view class="attr">
+        <text>灵石</text>
+        <text>{{cultivator.resources.spiritStones}}</text>
+      </view>
+      <view class="attr">
+        <text>灵丹</text>
+        <text>{{cultivator.resources.elixirs}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card actions">
+    <view class="section-title">修行抉择</view>
+    <view class="action-grid">
+      <button class="action" bindtap="meditate" disabled="{{gameOver}}">闭关修炼</button>
+      <button class="action" bindtap="seekAdventure" disabled="{{gameOver}}">外出历练</button>
+      <button class="action" bindtap="consumeElixir" disabled="{{gameOver}}">服用灵丹</button>
+      <button class="action" bindtap="spendStonesForElixir" disabled="{{gameOver}}">炼丹换命</button>
+      <button class="action" bindtap="accumulateYears" disabled="{{gameOver}}">岁月流转</button>
+      <button class="action breakthrough" bindtap="attemptBreakthrough" disabled="{{gameOver}}">渡劫突破</button>
+    </view>
+  </view>
+
+  <view class="card log-card">
+    <view class="section-title">修行日志</view>
+    <scroll-view scroll-y="true" class="log-panel">
+      <block wx:if="{{eventLog.length === 0}}">
+        <view class="log-empty">尚无记录，快去修行吧。</view>
+      </block>
+      <block wx:for="{{eventLog}}" wx:key="*this">
+        <view class="log-item">{{item}}</view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <button class="reset" bindtap="startNewJourney">重开新生</button>
 </view>
+
+<view wx:else class="loading-state">正在展开修仙世界…</view>

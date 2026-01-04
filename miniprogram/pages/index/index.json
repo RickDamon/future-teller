@@ -1,4 +1,6 @@
 {
-  "usingComponents": {
-  }
+  "navigationBarTitleText": "灵途纪",
+  "navigationBarBackgroundColor": "#141821",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false
 }

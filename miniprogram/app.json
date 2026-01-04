@@ -4,12 +4,12 @@
     "pages/chatBot/chatBot"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "腾讯云开发Agent-UI",
-    "backgroundColor": "#eeeeee",
+    "navigationBarBackgroundColor": "#141821",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "灵途纪",
+    "backgroundColor": "#0c0f16",
     "backgroundTextStyle": "light",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",

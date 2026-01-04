@@ -1,6 +1,6 @@
 {
-  "usingComponents": {
-    "agent-ui":"/components/agent-ui/index"
-  },
-  "enablePullDownRefresh": true
+  "navigationBarTitleText": "修仙演算",
+  "navigationBarBackgroundColor": "#141821",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false
 }

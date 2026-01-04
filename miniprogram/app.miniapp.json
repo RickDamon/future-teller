@@ -1,5 +1,10 @@
 {
-	"adapteByMiniprogram": {
-		"userName": "gh_c0e0f85df743"
-	}
+  "adapteByMiniprogram": {
+    "userName": "gh_c0e0f85df743"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "位置信息仅用于生成区域奇遇，不会存储在云端"
+    }
+  }
 }
